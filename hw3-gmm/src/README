@@ -1,0 +1,4 @@
+In both part2.py and part3.py, replace:
+
+IN_PATH <-- input file directory, e.g., '/home/jiaqimu2/ECE544NA/HW3/data/'
+OUT_PATH <-- output file directory, e.g., '/home/jiaqimu2/ECE544NA/HW3/figures/'

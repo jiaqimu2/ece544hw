@@ -1,0 +1,9 @@
+Part3 for ECE 544 NA HW2
+
+Set up following directories in part3.py to proper launch the program. Run part3.py.
+
+directory = data path <- '/home/jiaqimu2/ECE544NA/HW2/data/'
+figures = data path <- '/home/jiaqimu2/ECE544NA/HW2/figures/'
+train = training data file <- 'train/lab/hw2train_labels.txt'
+test = testing data file <- 'eval/lab/hw2eval_labels.txt'
+dev = dev data file <- 'dev/lab/hw2dev_labels.txt'
