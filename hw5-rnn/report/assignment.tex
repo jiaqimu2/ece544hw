@@ -85,8 +85,8 @@ Train a basic (vanilla) RNN and a LSTM for each the two settings using a single 
 \begin{itemize}
   \item Provide one figure with four subfigures, showing convergence plots of all four (2 settings, 2 models) classifiers (abscissa = training iteration, ordinate = training-corpus accuracy)
   \begin{proof}
-    The figures are listed in Figure~\ref{fig:training}.
-    \begin{figure}
+    The figures are listed in Figure~\ref{fig:training}. Due to memory issue, we downsampled an image to $7\times 7$.
+    \begin{figure}[htbp]
       \centering
       \subfigure[RNN-28*28]
       {
@@ -96,13 +96,13 @@ Train a basic (vanilla) RNN and a LSTM for each the two settings using a single 
       {
       \includegraphics[width=0.4\textwidth]{../figures/LSTM-28-28.pdf}
       }
-      \subfigure[RNN-784*1]
+      \subfigure[RNN-49*1]
       {
-      \includegraphics[width=0.4\textwidth]{../figures/RNN-28-28.pdf}
+      \includegraphics[width=0.4\textwidth]{../figures/RNN-49-1.pdf}
       }
-      \subfigure[RNN-784*1]
+      \subfigure[LSTM-49*1]
       {
-      \includegraphics[width=0.4\textwidth]{../figures/RNN-28-28.pdf}
+      \includegraphics[width=0.4\textwidth]{../figures/LSTM-49-1.pdf}
       }
       \caption{Convergence plots. \label{fig:training}}
     \end{figure}
@@ -110,15 +110,15 @@ Train a basic (vanilla) RNN and a LSTM for each the two settings using a single 
   \item Provide a table reporting the testing accuracies.
   \begin{proof}
     The accuracy is reported in Table~\ref{tb:test}.
-    \begin{table}
+    \begin{table}[htbp]
       \centering
       \begin{tabular}{r|c|c}
         \hline
-        & 28*28 & 784*1 \\
+        & 28*28 & 49*1 \\
         \hline
-        RNN & 0.3905 & \\
+        RNN & 0.4586 & 0.1233 \\
         \hline
-        LSTM & & \\
+        LSTM & 0.9060 & 0.6183\\
         \hline
       \end{tabular}
       \caption{Accuracy.\label{tb:test}}

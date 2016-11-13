@@ -1,7 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1479008536 "assignment.tex" "assignment.pdf" "assignment" 1479008537
-  "../figures/LSTM-28-28.pdf" 1479007721 11125 bf4fdffa42d2853f1606bb2dfb24de34 ""
-  "../figures/RNN-28-28.pdf" 1479008391 12207 8644c15d6c77a0eee2962a9ab2a3e0ff ""
+["pdflatex"] 1479057740 "assignment.tex" "assignment.pdf" "assignment" 1479057743
+  "../figures/LSTM-28-28.pdf" 1479009916 12531 6375a64ec76347df485716445dff3af3 ""
+  "../figures/LSTM-49-1.pdf" 1479057564 11607 1ec4a4ef028529a79897e46f56b477cb ""
+  "../figures/RNN-28-28.pdf" 1479009721 11000 207b27b3ccc95f3a9cb4c2c1e48eccde ""
+  "../figures/RNN-49-1.pdf" 1479057234 11805 5bb51692615b838db9c6b2fb83c34740 ""
   "/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2014/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2014/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -89,11 +91,13 @@
   "/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1401025944 1445653 26a0aacf3d70032b1ec192e8c7792117 ""
   "/usr/local/texlive/2014/texmf-var/web2c/pdftex/pdflatex.fmt" 1401025990 3832012 904d82bdcc8abf2b1cd296990b82553b ""
   "/usr/local/texlive/2014/texmf.cnf" 1401025936 577 a59edbde8d3a8c549d0eeaab1739e2ff ""
-  "assignment.aux" 1479008537 988 d56f67307eff8be09643b5927a8d39d3 ""
-  "assignment.tex" 1479008529 5734 89dad91a44b908fe84eaf737535ec940 ""
+  "assignment.aux" 1479057742 987 ea7f39a9ba420aa0e7c49dfc3c132e31 ""
+  "assignment.tex" 1479057738 5825 1ffb66b72917820e175525ff6517c1f9 ""
   (generated)
-  "/home/jiaqimu2/ECE544NA/HW4/report/assignment.pdf"
   "assignment.aux"
-  "/home/jiaqimu2/ECE544NA/HW4/report/assignment.log"
+  "/home/jiaqimu2/ece544hw/hw5-rnn/report/assignment.log"
   "assignment.pdf"
+  "/home/jiaqimu2/ece544hw/hw5-rnn/report/assignment.pdf"
   "assignment.log"
+  "/home/jiaqimu2/ECE544NA/HW4/report/assignment.log"
+  "/home/jiaqimu2/ECE544NA/HW4/report/assignment.pdf"
