@@ -29,10 +29,11 @@ def preprocess(data, dimension):
 
 def classification(train_data, train_label, test_data, test_label, label = 'RNN'):
 	
+	print '-'*50
 	if label == 'RNN':
-		classifier = RNN()
+		classifier = RNN(epoch_size = 200, hidden_size = 100, batch_size = 128)
 	else:
-		classifier = LSTM()
+		classifier = LSTM(epoch_size = 200, hidden_size = 100, batch_size = 128)
 
 	iter_nums, accuracies = classifier.fit(train_data, train_label)
 	fig_file = FIGURE_PATH + '%s-%d-%d.pdf' % (label, train_data.shape[1], train_data.shape[2])
@@ -44,8 +45,8 @@ def classification(train_data, train_label, test_data, test_label, label = 'RNN'
 
 	pred_label = classifier.predict(test_data)
 	classifier.tf_session.close()
-	print '-'*50
 	print '%s-%d-%d test accuracy: %0.4f' % (label, train_data.shape[1], train_data.shape[2], evaluate(pred_label, test_label))
+
 
 if __name__ == '__main__':
 	
@@ -54,14 +55,17 @@ if __name__ == '__main__':
 	train_data, train_label = mnist.train.images, mnist.train.labels
 	test_data, test_label = mnist.test.images, mnist.test.labels
 
+	# setting 1 and setting 2 cannot run in one shot!!!!
+	# setting 1
 	train_tmp_data = preprocess(train_data, 28)
 	test_tmp_data = preprocess(test_data, 28)
 
 	classification(train_tmp_data, train_label, test_tmp_data, test_label, 'RNN')
 	classification(train_tmp_data, train_label, test_tmp_data, test_label, 'LSTM')
 
-	train_tmp_data = preprocess(train_data, 1)
-	test_tmp_data = preprocess(test_data, 1)
+	# setting 2
+	# train_tmp_data = preprocess(train_data, 1)
+	# test_tmp_data = preprocess(test_data, 1)
 
-	classification(train_tmp_data, train_label, test_tmp_data, test_label, 'RNN')
-	classification(train_tmp_data, train_label, test_tmp_data, test_label, 'LSTM')
+	# classification(train_tmp_data, train_label, test_tmp_data, test_label, 'RNN')
+	# classification(train_tmp_data, train_label, test_tmp_data, test_label, 'LSTM')

@@ -6,9 +6,9 @@ class RNN:
 	def __init__(self, 
 				 hidden_size = 100,
 				 step_size = 0.01,
-				 batch_size = 500,
-				 epoch_size = 1000,
-				 display_size = 100,
+				 batch_size = 256,
+				 epoch_size = 100,
+				 display_size = 10,
 				 rand_seed = 2333):
 
 		self.hidden_size = hidden_size
@@ -26,16 +26,17 @@ class RNN:
 
 		if self.start + batch_size < n_sample:
 			self.start += batch_size
-			return range(self.start - batch_size, self.start)
+			return self.ind[range(self.start - batch_size, self.start)]
 		else:
 			ind = range(self.start, n_sample)
 			self.start = (self.start + batch_size) % n_sample
-			return ind + range(self.start)
+			return self.ind[ind + range(self.start)]
 
 	def fit(self, data, label):
 		
 		self.n_sample, self.n_steps, self.n_dim = data.shape
 		_, self.n_class = label.shape
+		self.ind = np.random.permutation(self.n_sample)
 
 		self.build_model()
 		self.tf_session = tf.Session()
@@ -49,11 +50,11 @@ class RNN:
 
 		for i in xrange(epoch_size):
 			batch_ind = self.next_batch()
-			self.tf_session.run(self.optimizer, feed_dict = {self.input_data: data[batch_ind], self.label: label[batch_ind], self.hidden_state: np.zeros((self.batch_size, self.hidden_size))})
+			self.tf_session.run(self.optimizer, feed_dict = {self.input_data: data[batch_ind], self.label: label[batch_ind]})
 
 			if i % display_size == 0:
 				epochs.append(i)
-				accuracies.append(self.tf_session.run(self.accuracy, feed_dict = {self.input_data: data, self.label: label, self.hidden_state: np.zeros((self.n_sample, self.hidden_size))}))
+				accuracies.append(self.tf_session.run(self.accuracy, feed_dict = {self.input_data: data, self.label: label}))
 
 				print 'epoch: %d\taccuracy: %0.4f' % (epochs[-1], accuracies[-1])
 			
@@ -61,14 +62,13 @@ class RNN:
 
 	def predict(self, data):
 
-		return self.tf_session.run(self.pred, feed_dict = {self.input_data: data, self.hidden_state: np.zeros((len(data), self.hidden_size))})
+		return self.tf_session.run(self.pred, feed_dict = {self.input_data: data})
 
 	def build_model(self):
 
 		########################
 		# variables
 		input_data = tf.placeholder('float', [None, self.n_steps, self.n_dim], name = 'x-input')
-		hidden_state = tf.placeholder('float', [None, self.hidden_size], name = 'hidden')
 		label = tf.placeholder('float', [None, self.n_class])
 
 		########################
@@ -85,9 +85,9 @@ class RNN:
 		_X = tf.reshape(_X, [-1, self.n_dim])
 		_X = tf.matmul(_X, self.hidden_weights) + self.hidden_bias
 		_X = tf.split(0, self.n_steps, _X)
-
+		
 		rnn_cell = tf.nn.rnn_cell.BasicRNNCell(self.hidden_size)
-		outputs, states = tf.nn.rnn(rnn_cell, _X, initial_state = hidden_state)
+		outputs, states = tf.nn.rnn(rnn_cell, _X, dtype = tf.float32)
 
 		pred = tf.matmul(outputs[-1], self.output_weights) + self.output_bias
 
@@ -96,7 +96,6 @@ class RNN:
 		accuracy = tf.reduce_mean(tf.cast(tf.equal(tf.argmax(pred, 1), tf.argmax(label, 1)), tf.float32))
 
 		self.input_data = input_data
-		self.hidden_state = hidden_state
 		self.label = label
 		self.optimizer = optimizer
 		self.accuracy = accuracy

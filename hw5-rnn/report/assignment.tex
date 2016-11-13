@@ -75,7 +75,8 @@ Train a basic (vanilla) RNN and a LSTM for each the two settings using a single 
   \begin{proof}
   	We implemented RNN and LSTM in {\tt rnn.py} and {\tt lstm.py} respectively. The overall structures for both implementations are quite similar. Therefore, we simply describe the structure of a vanilla RNN. In LSTM, we simply replace the {\tt rnn\_cell} with a {\tt lstm\_cell}. In the RNN class, we implemented two functions for training and testing:
   	\begin{itemize}
-  	 	\item {\tt fit}: to fit the data and learn the parameters 
+  	 	\item {\tt fit}: to fit the data and learn the parameters from training data. In this module we build a graph structure using a RNN cell ({\tt tf.nn.rnn\_cell.BasicRNNCell}) and plug this in an existing RNN module.
+      \item {\tt predict}: to predict labels for test data.
   	 \end{itemize} 
   \end{proof}
 \end{itemize}
@@ -83,6 +84,45 @@ Train a basic (vanilla) RNN and a LSTM for each the two settings using a single 
 \subsection{Results}
 \begin{itemize}
   \item Provide one figure with four subfigures, showing convergence plots of all four (2 settings, 2 models) classifiers (abscissa = training iteration, ordinate = training-corpus accuracy)
+  \begin{proof}
+    The figures are listed in Figure~\ref{fig:training}.
+    \begin{figure}
+      \centering
+      \subfigure[RNN-28*28]
+      {
+      \includegraphics[width=0.4\textwidth]{../figures/RNN-28-28.pdf}
+      }
+      \subfigure[LSTM-28*28]
+      {
+      \includegraphics[width=0.4\textwidth]{../figures/LSTM-28-28.pdf}
+      }
+      \subfigure[RNN-784*1]
+      {
+      \includegraphics[width=0.4\textwidth]{../figures/RNN-28-28.pdf}
+      }
+      \subfigure[RNN-784*1]
+      {
+      \includegraphics[width=0.4\textwidth]{../figures/RNN-28-28.pdf}
+      }
+      \caption{Convergence plots. \label{fig:training}}
+    \end{figure}
+  \end{proof}
   \item Provide a table reporting the testing accuracies.
+  \begin{proof}
+    The accuracy is reported in Table~\ref{tb:test}.
+    \begin{table}
+      \centering
+      \begin{tabular}{r|c|c}
+        \hline
+        & 28*28 & 784*1 \\
+        \hline
+        RNN & 0.3905 & \\
+        \hline
+        LSTM & & \\
+        \hline
+      \end{tabular}
+      \caption{Accuracy.\label{tb:test}}
+    \end{table}
+  \end{proof}
 \end{itemize}
 \end{document}
