@@ -1,0 +1,7 @@
+implementation for HW3
+configuration:
+	DATA_PATH for data storage
+	FIGURE_PATH for image storage
+
+run part2.py for code-from-scratch
+run part3.py for tensorflow
